@@ -1,0 +1,26 @@
+goos: darwin
+goarch: amd64
+pkg: coder.byzk.cn/golibs/dzqz/utils/cipherservices
+cpu: Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz
+BenchmarkCipherService-16    	      82	  12505510 ns/op	   11339 B/op	      67 allocs/op
+BenchmarkCipherService-16    	     100	  11823894 ns/op	   11003 B/op	      66 allocs/op
+BenchmarkCipherService-16    	      88	  11849290 ns/op	   11207 B/op	      66 allocs/op
+BenchmarkCipherService-16    	      90	  12139853 ns/op	   11176 B/op	      66 allocs/op
+BenchmarkCipherService-16    	      99	  12392535 ns/op	   10986 B/op	      66 allocs/op
+BenchmarkCipherService-16    	      85	  11840601 ns/op	   11252 B/op	      66 allocs/op
+BenchmarkCipherService-16    	     104	  11718620 ns/op	   10921 B/op	      66 allocs/op
+BenchmarkCipherService-16    	      87	  11533275 ns/op	   11241 B/op	      66 allocs/op
+BenchmarkCipherService-16    	      92	  11567488 ns/op	   11169 B/op	      66 allocs/op
+BenchmarkCipherService-16    	     102	  11611900 ns/op	   10992 B/op	      66 allocs/op
+BenchmarkSignP7-16           	     249	   4953907 ns/op	    2811 B/op	      22 allocs/op
+BenchmarkSignP7-16           	     253	   4849149 ns/op	    2809 B/op	      22 allocs/op
+BenchmarkSignP7-16           	     238	   4934369 ns/op	    2844 B/op	      22 allocs/op
+BenchmarkSignP7-16           	     252	   5228160 ns/op	    2803 B/op	      22 allocs/op
+BenchmarkSignP7-16           	     266	   4609834 ns/op	    2789 B/op	      22 allocs/op
+BenchmarkSignP7-16           	     256	   4836839 ns/op	    2797 B/op	      22 allocs/op
+BenchmarkSignP7-16           	     238	   4601866 ns/op	    2847 B/op	      22 allocs/op
+BenchmarkSignP7-16           	     247	   4811823 ns/op	    2809 B/op	      22 allocs/op
+BenchmarkSignP7-16           	     255	   4559310 ns/op	    2811 B/op	      22 allocs/op
+BenchmarkSignP7-16           	     273	   4986876 ns/op	    2770 B/op	      22 allocs/op
+PASS
+ok  	coder.byzk.cn/golibs/dzqz/utils/cipherservices	33.121s

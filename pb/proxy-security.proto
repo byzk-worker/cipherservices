@@ -1,0 +1,228 @@
+syntax = "proto3";
+
+package cn.bk.platform.dzqz.proto.proxy.security;
+
+//option java_package = "cn.bk.inside.application.hello.grpc";
+option java_multiple_files = true;
+//option java_outer_classname = "HelloRpc";
+option go_package = "pb/;pb";
+
+service SecurityService {
+  rpc securityStream(stream SecurityReq) returns (stream SecurityResp);
+}
+
+//调用任何业务操作前，先
+
+
+//请求实体
+message SecurityReq{
+
+  //操作类型
+  OperationEnum operation = 1;
+
+  //连接设备枚举
+  ConnectionTypeEnum connectionType = 2;
+
+  //待操作原数据
+  string srcData = 3;
+
+  //格式(p1验签公钥类型，输出格式类型)
+  string flage=4;
+
+  //Hash算法
+  HashAlgEnum hashAlg = 5;
+
+  //原数据类型
+  SrcDataTypeEnum srcDataType = 6;
+
+  //签名算法
+  SignAlgEnum signAlg = 7;
+
+  //证书(16进制或base64字符串)
+  string cert = 8;
+
+  //待验证的签名数据
+  string signedData = 9;
+
+  //p7签名签名时间
+  string signTime = 10;
+
+  //加密算法
+  EncAlgEnum encAlg = 11;
+
+  //待解密的数字信封
+  string envelopedData = 12;
+
+  //clientHello返回数据
+  string strClientHello = 13;
+
+  //clientauth返回数据
+  string strClientAuth = 14;
+
+  //serverHello时服务器产生的随机数
+  string strServerRandom = 15;
+
+  //读取的证书号
+  int32 certNo = 16;
+
+  //证书索引项
+  int32 certInfoNo = 17;
+
+  //获取指定容器中证书使用者-容器号
+  string container = 18;
+
+  //制作数字信封时接收者证书或接收ID或证书序列号
+  string  strRecipientInfo = 19;
+
+  //密码组件配置
+  map<string,string> config=20;
+
+
+
+}
+
+
+//连接设备枚举
+enum ConnectionTypeEnum{
+
+  //默认
+  DEFAULT = 0;
+
+  //博雅签名服务器
+  BK_SIGN_SERVER = 1;
+
+  //密码机服务器
+  CIPHER_SERVER = 2;
+
+  //临时密钥服务器
+  TEMP_SERVER = 3;
+
+}
+
+//操作枚举
+enum OperationEnum{
+
+  //空值
+  MULL = 0;
+
+  //建立连接
+  CREATE_CONNECTION = 1;
+
+  //关闭设备
+  CLOSE = 2;
+
+  //P1签名
+  SIGN_P1 = 3;
+
+  //p1验签
+  VERIFY_P1 = 4;
+
+  //P7签名
+  SIGN_P7 = 5;
+
+  //P7验签
+  VERIFY_P7 = 6;
+
+  //制作数字信封
+  ENC_ENVELOPE = 7;
+
+  //解数字信封
+  DEC_ENVELOPE = 8;
+
+  //身份认证serverHello
+  SERVER_HELLO = 9;
+
+  //身份认证serverAuth
+  SERVER_AUTH = 10;
+
+  //读取服务器证书
+  GET_SERVER_CERT = 11;
+
+  //获取证书索引项内容
+  GET_CERT_INFO = 12;
+
+  //消息摘要
+  DIGEST_DATA = 13;
+}
+
+//HASH 算法枚举
+enum HashAlgEnum{
+
+  DEF_HASH_ALG=0;
+
+  SHA1 = 1;
+
+  SHA2 = 2;
+
+  GBSM3 = 3;
+
+
+}
+
+//加密算法枚举
+enum EncAlgEnum{
+
+  //默认加密算法
+  DEF_ENC_ALG=0;
+
+  SSF33 = 1;
+
+
+}
+
+//签名算法枚举
+enum SignAlgEnum{
+
+  //默认签名算法
+  DEF_SIGN_ALG=0;
+
+  //使用SM3信息摘要算法和SM2签名算法
+  GBECSM3 = 1;
+
+  //使用MD5信息摘要算法和RSA签名算法
+  MD5withRSA = 2;
+
+  //使用SHA-1信息摘要算法和RSA签名算法
+  SHA1withRSA = 3;
+
+  //使用SHA-256信息摘要算法和RSA签名算法
+  SHA2withRSA = 4;
+
+  //制作数字信封时，要求数字信封中不包含签名
+  NULL = 5;
+
+
+}
+
+//原数据格式枚举
+enum SrcDataTypeEnum{
+
+  //默认数据格式
+
+  DEF_TYPE=0;
+
+  //16进制字符串
+  HEX = 1;
+
+  //普通字符串
+  COMMON=2;
+
+}
+
+//返回实体
+message SecurityResp{
+
+  //状态码0正常 其他全是错误
+  int32 errNo=1;
+
+  //消息短语
+  string errMsg=2;
+
+  //结果
+  string strResult=3;
+
+  //serverHello产生的服务器随机数
+  string serverRandom=4;
+
+
+}
